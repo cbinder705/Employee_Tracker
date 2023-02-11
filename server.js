@@ -36,6 +36,34 @@ function mainMenu() {
     .then((response) => {
       if (response.choice === "View Departments.") {
         viewDepartments();
+      } else if (response.choice === "View Roles.") {
+        viewRoles();
+      } else if (response.choice === "View Employees.") {
+        viewEmployees();
+      } else if (response.choice === "Create Department.") {
+        createDepartment();
+      } else if (response.choice === "Create Role") {
+        createRole();
+      } else if (response.choice === "Create Employee") {
+        createEmployee();
       }
     });
+}
+function viewDepartments() {
+  db.query("select * from department", function (err, data) {
+    printTable(data);
+    mainMenu();
+  });
+}
+function viewRoles() {
+  db.query("select * from role", function (err, data) {
+    printTable(data);
+    mainMenu();
+  });
+}
+function viewEmployees() {
+  db.query("select * from employee", function (err, data) {
+    printTable(data);
+    mainMenu();
+  });
 }
