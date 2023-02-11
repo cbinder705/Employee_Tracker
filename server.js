@@ -66,4 +66,53 @@ function viewEmployees() {
     printTable(data);
     mainMenu();
   });
+
+  function createDepartment() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "department",
+          message: "Whats the name of the Department?",
+        },
+      ])
+      .then(function (response) {
+        db.query(
+          "INSERT INTO department (name) VALUES(?)",
+          [response.department],
+          function (err) {
+            viewDepartments();
+          }
+        );
+      });
+  }
+  function createRole() {
+    db.query("select name, id as value from department", function (err, data) {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "role",
+            message: "Whats the name of the Role?",
+            type: "input",
+            name: "salary",
+            message: "What is their salary?",
+          },
+          {
+            type: "list",
+            name: "department",
+            message: "Which Department does this role belong to?",
+          },
+        ])
+        .then(function (response) {
+          db.query(
+            "INSER INTO role (title,salary,department id) VALUES (?,?,?)",
+            [response.role, response.salary, response.department],
+            function (err) {
+              viewRoles();
+            }
+          );
+        });
+    });
+  }
 }
