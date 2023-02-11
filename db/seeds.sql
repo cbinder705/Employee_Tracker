@@ -11,7 +11,7 @@ VALUES (001, "Manager", 80000),
 (003, "Payroll", 75000);
 
 INSERT INTO employee (role_id, first_name, last_name)
-VALUES (001, "Jesse", "Pin"),
+VALUES (001, "Jesse", "Pinkman"),
 (001, "Tim", "Burton"),
 (002, "Saul", "Goodman"),
 (003, "Walter", "White");
